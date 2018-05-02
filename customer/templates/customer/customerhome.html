@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Home Page</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body{
+    background-image: url('{% static 'agent/images/back.jpg' %}');
+    background-repeat: no-repeat;
+    }
+  </style>
+  </head>
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#" onclick="fun('1')">Welcome {{ data }}</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/cust/add" onclick="fun('2')">Add Nominee</a></li>
+        <li class="active"><a href="/cust/payment" onclick="fun('2')">Payment</a></li>
+           <li class="active"><a href="/cust/notification" onclick="fun('2')">Notification</a></li>
+        <li><a href="/cust/change">Change Password</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+          <li><a href="/cust/logout"><span class="glyphicon glyphicon-log-out"></span>    LogOut</a></li>
+      </ul>
+    </div>
+  </nav>
+<div class="temp">
+{% if error %}
+    <h3><center><font color="white"><strong>{{ error }}</strong></font></center></h3>
+{% endif %}
+</div>
+  </body>
+</html>

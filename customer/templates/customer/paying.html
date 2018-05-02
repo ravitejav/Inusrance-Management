@@ -1,0 +1,83 @@
+<html>
+<head>
+<title>Test Page</title>
+  </head>
+<style>
+* { font-family: "Arial", sans-serif; }
+
+#wrap { margin-top: 50px;text-align: center; }
+
+#barwrap {
+position: relative; /* to contain outer */
+margin: 0 auto; /* to centre */
+width: 250px;height: 20px; /* size of our bar - required */
+text-align: left;
+font-weight: bold;
+border: 1px solid black;
+}
+
+#barwrap P { /* to contain text */
+margin: 0; /* FF needs this or text drops below bar */
+width: 250px; /* use this node to position text */
+text-align: center;
+}
+
+#barwrap #outer { /* bar 'background' */
+position: absolute;
+width: 100%; height: 100%; /* match parent size */
+background: lightgreen;
+color: green; /* original colour of text */
+}
+
+#barwrap #inner {
+position: relative; /* otherwise outer hides us */
+width: 0; height: 100%; /* match parent */
+overflow: hidden; /* to hide new text/prevent it wrapping */
+background: green;
+color: lightgreen; /* colour of changed text */
+}
+</style>
+<script type="text/javascript">
+var time = 10000; // 10 secs
+var steps = 50; // Five per second
+var step = 1;
+
+function progress() {
+var bar = document.getElementById( "barwrap");
+var aStep = (bar.offsetWidth -2) /steps;// 2px border removed from width
+var x = Math.round( aStep *step);
+var outer = document.getElementById( "outer");
+var inner = document.getElementById( "inner");
+
+// Work out seconds based on % progress from current step
+var secs = (( time /1000) -Math.floor( ( step /steps) *10));
+
+inner.style.width = x +"px";
+step++;
+if( step > steps) redir();
+else setTimeout( "progress();", time /steps);
+}
+
+function redir() {
+alert("{{ error }}");
+window.location = "http://127.0.0.1:8000/cust/pay";
+}
+</script>
+<body>
+
+<div id='wrap'>
+Payement progress:
+<div id='barwrap'> <!-- P wrappers for text positioning -->
+<div id='outer'><p></p></div> <!-- original colour/text -->
+<div id='inner'><p></p></div> <!-- new colour/text -->
+</div>
+
+<br>
+<script type="text/javascript">
+  progress();
+</script>
+</div>
+
+</body>
+
+</html>

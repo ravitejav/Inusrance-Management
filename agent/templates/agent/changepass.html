@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change Password</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body{
+    background-image: url('{% static 'agent/images/back.jpg' %}');
+    background-repeat: no-repeat;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#" onclick="fun('1')">Welcome {{ data }}</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/in/staff/add" onclick="fun('2')">Add Customer</a></li>
+      <li><a href="/in/staff/update">Update Customer</a></li>
+       <li><a href="/in/staff/addpolicy">Add Policy</a></li>
+      <li><a href="/in/staff/trans">Check for transaction</a></li>
+      <li><a href="/in/staff/change">Change Password</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="/in/staff/logout" onclick="fun('5')"><span class="glyphicon glyphicon-log-out"></span>    LogOut</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="temp">
+{% if error %}
+    <h3><center><font color="white"><strong>{{ error }}</strong></font></center></h3>
+{% endif %}
+</div>
+<div class="stdlogin">
+  <center style="margin-top:100px">
+   <form style="max-width:800px" action="/in/staff/pass" method="POST"  enctype="multipart/form-data">
+  {% csrf_token %}
+      <div class="form-row">
+        <div class="form-group col-md-6">
+            <font color="white">Old Password</font>
+        </div>
+        <div class="form-group col-md-6">
+          <input type="text" class="form-control" placeholder="Old Password" name="oldpass" required="required">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+            <font color="white">New Password</font>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input type="text" class="form-control" placeholder="New Password" name="newpass" required="required">
+        </div>
+      </div>
+       <div class="form-row">
+        <div class="form-group col-md-6">
+            <font color="white">Confirm New Password</font>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input type="text" class="form-control" placeholder="Confirm New Password" name="conpass" required="required">
+        </div>
+      </div>
+       <button type="submit" class="btn btn-primary">Change Password</button>
+    </form>
+  </center>
+</div>
+</body>
+</html>

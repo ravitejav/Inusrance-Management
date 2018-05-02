@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upadte Customer Id</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body{
+      background-image: url('{% static 'agent/images/back.jpg' %}');
+      background-repeat: no-repeat;
+      }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#" onclick="fun('1')">Welcome {{ data }}</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/in/staff/add" onclick="fun('2')">Add Customer</a></li>
+      <li><a href="/in/staff/update">Update Customer</a></li>
+       <li><a href="/in/staff/addpolicy">Add Policy</a></li>
+      <li><a href="/in/staff/trans">Check for transaction</a></li>
+      <li><a href="/in/staff/change">Change Password</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="/in/staff/logout" onclick="fun('5')"><span class="glyphicon glyphicon-log-out"></span>    LogOut</a></li>
+    </ul>
+  </div>
+</nav>
+<form class="form-inline" action="/in/staff/updatedone" method="POST" style="padding:100px">
+  {% csrf_token %}
+    <input type="search" class="form-control mr-sm-2" placeholder="Please enter customer id to update details..." aria-label="Search" name="id" style="width: 400px;">
+    <button type="submit" style="width: 60px;height: 32px;">Go</button>
+  </form>
+</body>
+</html>

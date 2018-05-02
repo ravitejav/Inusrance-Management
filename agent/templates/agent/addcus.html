@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Customer</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body{
+      background-image: url('{% static 'agent/images/back.jpg' %}');
+      background-repeat: no-repeat;
+      }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#" onclick="fun('1')">Welcome {{ data }}</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/in/staff/add" onclick="fun('2')">Add Customer</a></li>
+      <li><a href="/in/staff/update">Update Customer</a></li>
+       <li><a href="/in/staff/addpolicy">Add Policy</a></li>
+      <li><a href="/in/staff/trans">Check for transaction</a></li>
+      <li><a href="/in/staff/change">Change Password</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="/in/staff/logout" onclick="fun('5')"><span class="glyphicon glyphicon-log-out"></span>    LogOut</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="stdlogin">
+    <center style="margin-top:100px">
+    <form style="max-width:800px" action="/in/staff/addcus" method="POST"  enctype="multipart/form-data">
+  {% csrf_token %}
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input type="text" class="form-control" id="FirstName" placeholder="First Name" name="first_name" required="required">
+        </div>
+        <div class="form-group col-md-6">
+          <input type="text" class="form-control" id="SecondName" placeholder="Last Name" name="second_name" required="required">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <select class="form-control" id="inputEmail4" name="gender">
+            <option value="m">Male</option>
+            <option value="f">Female</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+          <input type="text" class="form-control" id="inputPassword4" placeholder="Phone Number" name="phone" required="required">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email" required="required">
+        </div>
+        <div class="form-group col-md-6">
+          <input type="password" class="form-control" id="inputPassword4" placeholder="Password" name="passa" required="required">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input type="text" class="form-control" id="inputEmail4" placeholder="Age" name="age" required="required">
+        </div>
+        <div class="form-group col-md-6">
+          <input type="date" class="form-control" id="inputPassword4" placeholder="DOB" name="dob" required="required">
+        </div>
+      </div>
+      <div class="form-row col-md-12 form-group">
+        <input type="text" class="form-control" id="inputAddress" placeholder="Address" name="per_add" required="required">
+      </div>
+      <button type="submit" class="btn btn-primary">Add Customer</button>
+    </form>
+  </center>
+</div>
+</body>
+</html>
